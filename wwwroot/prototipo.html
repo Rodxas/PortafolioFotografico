@@ -48,6 +48,61 @@
         }
 
         /* ============================================
+           MODO NOCTURNO / DARK MODE
+           ============================================ */
+        body.dark-mode {
+            --beige-claro: #1a1a2e;
+            --beige-medio: #16213e;
+            --beige-oscuro: #0f3460;
+            
+            --verde-menta: #4a7c6f;
+            --verde-sage: #3d6b5f;
+            --verde-aceituna: #2d5a4a;
+            
+            --lavanda: #1a2a3a;
+            --rosa-lavado: #2a1a2a;
+            --rosa-pastel: #3a2a3a;
+            
+            --blanco-crema: #16213e;
+            --gris-texto: #e8e8e8;
+            --gris-suave: #b0b0b0;
+            
+            --sombra-soft: rgba(0, 0, 0, 0.3);
+            --sombra-media: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Botón toggle modo nocturno */
+        .dark-mode-toggle {
+            background: var(--verde-sage);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .dark-mode-toggle:hover {
+            background: var(--verde-aceituna);
+            transform: scale(1.1);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+            --espacio-md: 2rem;
+            --espacio-lg: 4rem;
+            --espacio-xl: 6rem;
+        }
+
+        /* ============================================
            RESET Y ESTILOS BASE
            ============================================ */
         * {
@@ -541,6 +596,148 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+
+        /* ============================================
+           LIGHTBOX - VISUALIZACIÓN DE IMÁGENES
+           ============================================ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--verde-menta);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            color: var(--verde-menta);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        /* ============================================
+           BOTONES SOCIALES - INSTAGRAM
+           ============================================ */
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--verde-sage);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-btn:hover {
+            background: var(--verde-aceituna);
+            transform: translateY(-3px);
+        }
+
+        .nav-social {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-social {
+            margin-bottom: 20px;
+        }
+
+        .contact-social .social-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 22px;
+            margin: 0 10px;
+            background: linear-gradient(45deg, #833AB4, #E1306C, #FCAF45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-social .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #833AB4, #E1306C, #FCAF45);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-social .social-btn:hover::before {
+            opacity: 1;
+        }
+
+        .contact-social .social-btn svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Instagram hover effect */
+        .contact-social .social-btn:hover {
+            background: linear-gradient(45deg, #833AB4, #E1306C, #FCAF45);
+            transform: scale(1.1);
+        }
+
+        /* Nav social button hover - Instagram gradient */
+        .nav-social .social-btn {
+            background: linear-gradient(45deg, #833AB4, #E1306C, #FCAF45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-social .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(131, 58, 180, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -555,6 +752,16 @@
                 <li><a href="#portafolio">Portafolio</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
+            <div class="nav-social">
+                <button class="dark-mode-toggle" id="darkModeToggle" title="Modo Nocturno">
+                    🌙
+                </button>
+                <a href="https://www.instagram.com/_pixelessence_?igsh=dmlvN3Zyb3N3bGQ3" target="_blank" class="social-btn" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
         </nav>
     </header>
 
@@ -726,6 +933,13 @@
                 ¿Interesada en collaborate o contratar mis servicios?<br>
                 ¡Escríbeme!
             </p>
+            <div class="contact-social">
+                <a href="https://www.instagram.com/_pixelessence_?igsh=dmlvN3Zyb3N3bGQ3" target="_blank" class="social-btn" title="Instagram">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
             <a href="mailto:eisahernandezx@gmail.com" class="contact-email">
                 eisahernandezx@gmail.com
             </a>
@@ -737,7 +951,103 @@
         <p>© 2026 Zuzu Hernández | Fotografía de Modas & Diseño</p>
     </footer>
 
+    <!-- Lightbox para visualizar imágenes en grande -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <span class="lightbox-nav lightbox-prev" id="lightbox-prev">&#10094;</span>
+        <img src="" alt="Imagen ampliada" id="lightbox-img">
+        <span class="lightbox-nav lightbox-next" id="lightbox-next">&#10095;</span>
+    </div>
+
     <script>
+        // ============================================
+        // MODO NOCTURNO / DARK MODE
+        // ============================================
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Verificar si hay una preferencia guardada
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        }
+
+        // Toggle dark mode
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Guardar preferencia
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Cambiar icono
+            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+        });
+
+        // ============================================
+        // LIGHTBOX - Visualización de imágenes
+        // ============================================
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        
+        // Obtener todas las imágenes del portafolio
+        const portfolioImages = Array.from(document.querySelectorAll('.portfolio-item img'));
+        let currentImageIndex = 0;
+
+        // Añadir evento click a cada imagen del portafolio
+        portfolioImages.forEach((img, index) => {
+            img.parentElement.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImg.src = portfolioImages[index].src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evitar scroll
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + portfolioImages.length) % portfolioImages.length;
+            lightboxImg.src = portfolioImages[currentImageIndex].src;
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % portfolioImages.length;
+            lightboxImg.src = portfolioImages[currentImageIndex].src;
+        }
+
+        // Event listeners
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', showPrevImage);
+        lightboxNext.addEventListener('click', showNextImage);
+
+        // Cerrar al hacer clic fuera de la imagen
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Navegación con teclas
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'ArrowRight') showNextImage();
+        });
+
         // Efecto de scroll en el header
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
