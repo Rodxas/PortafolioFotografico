@@ -8,7 +8,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zuzu Hernández | Fotografía de Modas</title>
+    <title>Zuzu Hernández | Fotografía de Modas - Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portafolio profesional de fotografía de modas. Capturando la esencia de la moda a través del lente con un estilo único y artístico.">
+    <link rel="canonical" href="https://pixelessence-lssq.onrender.com/prototipo.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Zuzu Hernández | Fotografía de Modas">
+    <meta property="og:description" content="Portafolio profesional de fotografía de modas. Capturando la esencia de la moda a través del lente.">
+    <meta property="og:image" content="https://i.postimg.cc/dQzBzVZ4/Main-Photo.jpg">
+    <meta property="og:url" content="https://pixelessence-lssq.onrender.com/prototipo.html">
+    <meta property="og:site_name" content="@_pixelessence_">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zuzu Hernández | Fotografía de Modas">
+    <meta name="twitter:description" content="Portafolio profesional de fotografía de modas.">
+    <meta name="twitter:image" content="https://i.postimg.cc/dQzBzVZ4/Main-Photo.jpg">
     <style>
         /* ============================================
            VARIABLES CSS - PALETA DE COLORES PASTEL
@@ -738,6 +756,351 @@
             transform: scale(1.1);
             box-shadow: 0 5px 20px rgba(131, 58, 180, 0.4);
         }
+
+        /* ============================================
+            HAMBURGER MENU - MOBILE NAVIGATION
+            ============================================ */
+        .hamburger {
+            display: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--verde-aceituna);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 6px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: -6px;
+        }
+
+        /* Mobile Navigation Panel */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: var(--blanco-crema);
+            box-shadow: -5px 0 30px var(--sombra-media);
+            z-index: 999;
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 25px;
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--gris-texto);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--verde-aceituna);
+        }
+
+        .mobile-nav .nav-social {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--beige-oscuro);
+        }
+
+        /* Mobile Nav Overlay */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ============================================
+            WHATSAPP FLOATING BUTTON
+            ============================================ */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-floating:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-floating svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* ============================================
+            CONTACT FORM STYLES
+            ============================================ */
+        .contact-form-wrapper {
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--beige-oscuro);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--blanco-crema);
+            color: var(--gris-texto);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--verde-sage);
+            box-shadow: 0 0 10px var(--sombra-soft);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--gris-suave);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 15px 30px;
+            background: var(--verde-sage);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: var(--verde-aceituna);
+            transform: translateY(-2px);
+        }
+
+        .contact-form button:disabled {
+            background: var(--gris-suave);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .contact-divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--gris-suave);
+            font-size: 0.9rem;
+        }
+
+        .contact-divider::before,
+        .contact-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--beige-oscuro);
+        }
+
+        .contact-divider span {
+            padding: 0 15px;
+        }
+
+        .whatsapp-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-contact-btn:hover {
+            background: #20BD5A;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-contact-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        /* Form Messages */
+        .form-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background: var(--verde-menta);
+            color: var(--verde-aceituna);
+            border: 1px solid var(--verde-sage);
+        }
+
+        .form-message.error {
+            display: block;
+            background: #fee;
+            color: #c33;
+            border: 1px solid #fcc;
+        }
+
+        /* ============================================
+            GALLERY FILTER BUTTONS
+            ============================================ */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: var(--blanco-crema);
+            border: 2px solid var(--beige-oscuro);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gris-texto);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--verde-sage);
+            color: var(--verde-aceituna);
+        }
+
+        .filter-btn.active {
+            background: var(--verde-sage);
+            border-color: var(--verde-sage);
+            color: white;
+        }
+
+        .portfolio-item {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-item.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        /* ============================================
+            RESPONSIVE - MOBILE NAVIGATION
+            ============================================ */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -752,7 +1115,12 @@
                 <li><a href="#portafolio">Portafolio</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <div class="nav-social">
+            <div class="nav-controls">
+                <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <button class="dark-mode-toggle" id="darkModeToggle" title="Modo Nocturno">
                     🌙
                 </button>
@@ -764,6 +1132,25 @@
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Navigation Panel -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#acerca">Acerca</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#portafolio">Portafolio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="nav-social">
+            <a href="https://www.instagram.com/_pixelessence_?igsh=dmlvN3Zyb3N3bGQ3" target="_blank" class="social-btn" title="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white"/>
+                </svg>
+            </a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
@@ -778,7 +1165,8 @@
             <div class="hero-image fade-in delay-1">
                 <!-- MainPhoto - Foto principal del portafolio -->
                 <img src="https://i.postimg.cc/dQzBzVZ4/Main-Photo.jpg" 
-                     alt="Zuzu Hernández - Fotografía de Modas">
+                     alt="Zuzu Hernández - Fotografía de Modas"
+                     loading="lazy">
             </div>
         </div>
     </section>
@@ -789,7 +1177,8 @@
             <div class="about-photo fade-in">
                 <!-- SecondaryPhoto - Foto con información profesional -->
                 <img src="https://i.postimg.cc/ZY1c15vf/Secondary-Photo.jpg" 
-                     alt="Zuzu Hernández">
+                     alt="Zuzu Hernández"
+                     loading="lazy">
             </div>
             <div class="about-info fade-in delay-1">
                 <h2>Acerca de Mí</h2>
@@ -857,69 +1246,77 @@
             <div class="divider"></div>
         </div>
         
+        <!-- Filter Buttons -->
+        <div class="filter-buttons fade-in">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="editorial">Editorial</button>
+            <button class="filter-btn" data-filter="product">Product</button>
+            <button class="filter-btn" data-filter="portrait">Portrait</button>
+        </div>
+        
         <div class="portfolio-grid">
             <!-- Imágenes del repertorio de Affinity -->
-            <div class="portfolio-item fade-in">
-                <img src="https://i.postimg.cc/GmPsgcvG/Foto-11.jpg" alt="Portafolio 1">
+            <div class="portfolio-item fade-in" data-category="portrait">
+                <img src="https://i.postimg.cc/GmPsgcvG/Foto-11.jpg" alt="Portafolio 1" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>PORTRAIT</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in delay-1">
-                <img src="https://i.postimg.cc/HsyM50x7/foto-7.jpg" alt="Portafolio 2">
+            <div class="portfolio-item fade-in delay-1" data-category="editorial">
+                <img src="https://i.postimg.cc/HsyM50x7/foto-7.jpg" alt="Portafolio 2" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>EDITORIAL</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in delay-2">
-                <img src="https://i.postimg.cc/bJ5GSdjj/Foto-79.jpg" alt="Portafolio 3">
+            <div class="portfolio-item fade-in delay-2" data-category="editorial">
+                <img src="https://i.postimg.cc/bJ5GSdjj/Foto-79.jpg" alt="Portafolio 3" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>EDITORIAL</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in delay-3">
-                <img src="https://i.postimg.cc/43BHZBLd/Foto-19.jpg" alt="Portafolio 4">
+            <div class="portfolio-item fade-in delay-3" data-category="product">
+                <img src="https://i.postimg.cc/43BHZBLd/Foto-19.jpg" alt="Portafolio 4" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>PRODUCT</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in">
-                <img src="https://i.postimg.cc/02wSmGQG/foto-10.jpg" alt="Portafolio 5">
+            <div class="portfolio-item fade-in" data-category="portrait">
+                <img src="https://i.postimg.cc/02wSmGQG/foto-10.jpg" alt="Portafolio 5" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>PORTRAIT</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in delay-1">
-                <img src="https://i.postimg.cc/MHjn7xWW/Foto-91.jpg" alt="Portafolio 6">
+            <div class="portfolio-item fade-in delay-1" data-category="editorial">
+                <img src="https://i.postimg.cc/MHjn7xWW/Foto-91.jpg" alt="Portafolio 6" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>EDITORIAL</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in delay-2">
-                <img src="https://i.postimg.cc/WzJdGjsB/Foto-81.jpg" alt="Portafolio 7">
+            <div class="portfolio-item fade-in delay-2" data-category="product">
+                <img src="https://i.postimg.cc/WzJdGjsB/Foto-81.jpg" alt="Portafolio 7" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>PRODUCT</span>
                 </div>
             </div>
             
-            <div class="portfolio-item fade-in delay-3">
-                <img src="https://i.postimg.cc/43JHrr18/Foto-12.jpg" alt="Portafolio 8">
+            <div class="portfolio-item fade-in delay-3" data-category="portrait">
+                <img src="https://i.postimg.cc/43JHrr18/Foto-12.jpg" alt="Portafolio 8" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>PORTRAIT</span>
                 </div>
             </div>
             
             <!-- Nueva imagen añadida -->
-            <div class="portfolio-item fade-in delay-3">
-                <img src="https://i.postimg.cc/jSL3fNhD/Foto-20.jpg" alt="Portafolio 9">
+            <div class="portfolio-item fade-in delay-3" data-category="editorial">
+                <img src="https://i.postimg.cc/jSL3fNhD/Foto-20.jpg" alt="Portafolio 9" loading="lazy">
                 <div class="portfolio-overlay">
-                    <span>FOTOGRAFÍA</span>
+                    <span>EDITORIAL</span>
                 </div>
             </div>
         </div>
@@ -930,7 +1327,7 @@
         <div class="contact-content fade-in">
             <h2>Contacto</h2>
             <p style="margin-bottom: 2rem; color: var(--gris-suave);">
-                ¿Interesada en collaborate o contratar mis servicios?<br>
+                ¿Interesada en colaborar o contratar mis servicios?<br>
                 ¡Escríbeme!
             </p>
             <div class="contact-social">
@@ -940,9 +1337,36 @@
                     </svg>
                 </a>
             </div>
-            <a href="mailto:eisahernandezx@gmail.com" class="contact-email">
-                eisahernandezx@gmail.com
-            </a>
+            
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <div class="form-message success" id="formSuccess">
+                    ¡Gracias por tu mensaje! Te contactaré pronto.
+                </div>
+                <div class="form-message error" id="formError">
+                    Por favor, completa todos los campos correctamente.
+                </div>
+                
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojkpojd" method="POST">
+                    <input type="text" name="name" required placeholder="Tu nombre">
+                    <input type="email" name="email" required placeholder="Tu email">
+                    <textarea name="message" required placeholder="Tu mensaje"></textarea>
+                    <button type="submit">Enviar Email</button>
+                </form>
+                
+                <div class="contact-divider">
+                    <span>o</span>
+                </div>
+                
+                <a href="https://wa.me/18097137769?text=Hola%20Zuzu,%20me%20interesan%20sus%20servicios%20de%20fotograf%C3%ADa" 
+                   class="whatsapp-contact-btn" 
+                   target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Enviar WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
@@ -950,6 +1374,16 @@
     <footer>
         <p>© 2026 Zuzu Hernández | Fotografía de Modas & Diseño</p>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/18097137769?text=Hola%20Zuzu,%20me%20interesan%20sus%20servicios%20de%20fotograf%C3%ADa" 
+       class="whatsapp-floating" 
+       target="_blank" 
+       title="Contáctanos por WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
 
     <!-- Lightbox para visualizar imágenes en grande -->
     <div class="lightbox" id="lightbox">
@@ -983,6 +1417,137 @@
             
             // Cambiar icono
             darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+        });
+
+        // ============================================
+        // MOBILE NAVIGATION - Hamburger Menu
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+        function toggleMobileMenu() {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            
+            // Prevent body scroll when menu is open
+            if (!isExpanded) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeMobileMenu() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Toggle menu on hamburger click
+        hamburger.addEventListener('click', toggleMobileMenu);
+
+        // Close menu on overlay click
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu on link click
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // ============================================
+        // CONTACT FORM - Validation and Submission
+        // ============================================
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        const formError = document.getElementById('formError');
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Clear previous messages
+            formSuccess.style.display = 'none';
+            formError.style.display = 'none';
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = formData.get('name')?.trim();
+            const email = formData.get('email')?.trim();
+            const message = formData.get('message')?.trim();
+            
+            // Validate fields
+            let isValid = true;
+            
+            if (!name || name.length < 2) {
+                isValid = false;
+            }
+            
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                isValid = false;
+            }
+            
+            if (!message || message.length < 5) {
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                formError.style.display = 'block';
+                return;
+            }
+            
+            // Show success message
+            formSuccess.style.display = 'block';
+            contactForm.reset();
+            
+            // Note: Formspree will handle actual submission
+            // This provides client-side validation feedback
+        });
+
+        // ============================================
+        // GALLERY FILTERING
+        // ============================================
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                
+                // Update active button
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter items with animation
+                portfolioItems.forEach(item => {
+                    const category = item.dataset.category;
+                    
+                    if (filter === 'all' || category === filter) {
+                        item.classList.remove('hidden', 'fade-out');
+                        item.style.display = '';
+                    } else {
+                        item.classList.add('fade-out');
+                        setTimeout(() => {
+                            item.classList.add('hidden');
+                            item.classList.remove('fade-out');
+                        }, 400);
+                    }
+                });
+            });
         });
 
         // ============================================
