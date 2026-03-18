@@ -802,18 +802,19 @@
             display: none;
             position: fixed;
             top: 0;
-            right: -280px;
+            right: 0;
             width: 280px;
             height: 100vh;
             background: var(--blanco-crema);
             box-shadow: -5px 0 30px var(--sombra-media);
             z-index: 999;
             padding: 80px 30px 30px;
-            transition: right 0.3s ease;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
         }
 
         .mobile-nav.active {
-            right: 0;
+            transform: translateX(0);
         }
 
         .mobile-nav ul {
@@ -1099,6 +1100,11 @@
 
             .mobile-nav {
                 display: block;
+                transform: translateX(100%);
+            }
+            
+            .mobile-nav.active {
+                transform: translateX(0);
             }
         }
     </style>
