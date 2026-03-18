@@ -1372,6 +1372,14 @@
                     </svg>
                     Enviar WhatsApp
                 </a>
+
+                <!-- Email alternativo -->
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--gris-suave);">
+                    O envíame un email: 
+                    <a href="mailto:eisahernandezx100pre@gmail.com" style="color: var(--verde-aceituna);">
+                        eisahernandezx100pre@gmail.com
+                    </a>
+                </p>
             </div>
         </div>
     </section>
@@ -1516,12 +1524,36 @@
                 return;
             }
             
-            // Show success message
-            formSuccess.style.display = 'block';
-            contactForm.reset();
+            // Disable button while submitting
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
             
-            // Note: Formspree will handle actual submission
-            // This provides client-side validation feedback
+            // Send to Formspree
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formSuccess.style.display = 'block';
+                    contactForm.reset();
+                } else {
+                    formError.textContent = 'Error al enviar. Intenta de nuevo.';
+                    formError.style.display = 'block';
+                }
+            } catch (error) {
+                formError.textContent = 'Error de conexión. Intenta de nuevo.';
+                formError.style.display = 'block';
+            }
+            
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Email';
         });
 
         // ============================================
